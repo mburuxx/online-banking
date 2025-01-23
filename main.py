@@ -33,3 +33,5 @@ if "dom_content" in st.session_state:
             st.write("Parsing the content")
 
         dom_chunks = split_dom_content(st.session_state.dom_content)
+        results = parse_content(dom_chunks, parse_description)
+        st.write(results)
