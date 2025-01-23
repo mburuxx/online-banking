@@ -24,8 +24,8 @@ with st.container():
 if st.button("🚀 Scrape Site"):
     if url:
         with st.spinner("Scraping the website..."):
-            results = scrape_website(url)
-            body_content = extract_body_content(results)
+            dom_content = scrape_website(url)
+            body_content = extract_body_content(dom_content)
             cleaned_content = clean_body_content(body_content)
             st.session_state.dom_content = cleaned_content
 
@@ -47,11 +47,11 @@ if "dom_content" in st.session_state:
         if parse_description:
             with st.spinner("Parsing the content..."):
                 dom_chunks = split_dom_content(st.session_state.dom_content)
-                results = parse_content(dom_chunks, parse_description)
+                parsed_results = parse_content(dom_chunks, parse_description)
 
             st.success("Parsing completed!")
             st.markdown("### 🛠️ Parsed Results")
-            st.write(results)
+            st.write(parsed_results)
         else:
             st.error("Please provide a description of what you want to parse.")
 
